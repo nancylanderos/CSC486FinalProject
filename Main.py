@@ -28,12 +28,24 @@ print(cor2)
 # plt.show()
 
 #category customers find/view
-topcateg = 30
-topcateg1 = data['category_code'].value_counts()[:topcateg].sort_values(ascending=False)
-df = pd.DataFrame({'count':topcateg1, "topcateg1":topcateg1})
-squarify.plot(sizes=topcateg1, label=topcateg1.index.array, color=["red","blue","green","grey","cyan"], alpha=.7)
-plt.axis('off')
-plt.show()
+# topcateg = 30
+# topcateg1 = data['category_code'].value_counts()[:topcateg].sort_values(ascending=False)
+# df = pd.DataFrame({'count':topcateg1, "topcateg1":topcateg1})
+# squarify.plot(sizes=topcateg1, label=topcateg1.index.array, color=["red","blue","green","grey","cyan"], alpha=.7)
+# plt.axis('off')
+# plt.show()
 
-# data['event_date'] = data['event_time'].apply(lambda s: convert_time_to_date(s))
-# visitor_by_date = data[['event_date','user_id']].drop_duplicates().groupby(['event_date'])['user_id'].agg(['count']).sort_values(by=['event_date'], ascending=True)
+
+#showing traffic
+def convert_time_to_date(utc_timestamp):
+    utcdate = datetime.strptime(utc_timestamp[0:10], '%Y-%m-%d').date()
+    return utcdate
+
+data['event_date'] = data['event_time'].apply(lambda s: convert_time_to_date(s))
+visitor_by_date = data[['event_date','user_id']].drop_duplicates().groupby(['event_date'])['user_id'].agg(['count']).sort_values(by=['event_date'], ascending=True)
+
+x = pd.Series(visitor_by_date.index.values)
+y = visitor_by_date['count']
+plt.rcParams['figure.figsize'] = (20,8)
+plt.plot(x,y)
+plt.show()
