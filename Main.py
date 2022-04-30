@@ -65,8 +65,8 @@ print(cor2)
 
 #what items are purchased?
 purchase = data.loc[data['event_type'] == "purchase"]
-purchase = purchase.dropna(axis = 'rows')
-print (purchase)
+purchase1 = purchase.dropna(axis = 'rows')
+print (purchase1)
 #what items are viewed?
 
 #is there a correlation between the ones viewed and purchased?
