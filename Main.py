@@ -8,6 +8,10 @@ from datetime import datetime
 
 import timestamp as timestamp
 #%matplotlib inline
+desired_width=320
+pd.set_option('display.width', desired_width)
+np.set_printoptions(linewidth=desired_width)
+pd.set_option('display.max_columns',10)
 
 data = pd.read_csv(r'C:/Users/landerosn/Documents/Berea College Schoolwork/Year 2022/CSC 486/2019-Nov.csv')
 print(data.shape)
@@ -64,14 +68,19 @@ print(cor2)
 # plt.show()
 
 #what items are purchased?
-purchase = data.loc[data['event_type'] == "purchase"]
-purchase1 = purchase.dropna(axis = 'rows')
-print (purchase1)
+# purchase = data.loc[data['event_type'] == "purchase"]
+# purchase1 = purchase.dropna(axis = 'rows')
+# print (purchase1)
 #what items are viewed?
 
 #is there a correlation between the ones viewed and purchased?
 
 #brands that customers purchase
-topsellers = purchase.groupby('brand')['brand'].agg(['count']).sort_values('count', ascending=False)
-topsellers.head(20)
-print(topsellers)
+# topsellers = purchase.groupby('brand')['brand'].agg(['count']).sort_values('count', ascending=False)
+# topsellers.head(20)
+# print(topsellers)
+
+#example of a user behavior
+user_session = 	513351129
+data.loc[data['user_id'] == user_session]
+print (data.loc[data['user_id'] == user_session])
