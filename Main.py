@@ -70,3 +70,8 @@ print (purchase)
 #what items are viewed?
 
 #is there a correlation between the ones viewed and purchased?
+
+#brands that customers purchase
+topsellers = purchase.groupby('brand')['brand'].agg(['count']).sort_values('count', ascending=False)
+topsellers.head(20)
+print(topsellers)
