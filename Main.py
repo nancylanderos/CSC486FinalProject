@@ -36,16 +36,37 @@ print(cor2)
 # plt.show()
 
 
-#showing traffic
-def convert_time_to_date(utc_timestamp):
-    utcdate = datetime.strptime(utc_timestamp[0:10], '%Y-%m-%d').date()
-    return utcdate
+#showing traffic/work on it
+# def convert_time_to_date(utc_timestamp):
+#     utcdate = datetime.strptime(utc_timestamp[0:10], '%Y-%m-%d').date()
+#     return utcdate
+#
+# data['event_date'] = data['event_time'].apply(lambda s: convert_time_to_date(s))
+# visitor_by_date = data[['event_date','user_id']].drop_duplicates().groupby(['event_date'])['user_id'].agg(['count']).sort_values(by=['event_date'], ascending=True)
+#
+# x = pd.Series(visitor_by_date.index.values)
+# y = visitor_by_date['count']
+# plt.rcParams['figure.figsize'] = (20,8)
+# plt.plot(x,y)
+# plt.show()
 
-data['event_date'] = data['event_time'].apply(lambda s: convert_time_to_date(s))
-visitor_by_date = data[['event_date','user_id']].drop_duplicates().groupby(['event_date'])['user_id'].agg(['count']).sort_values(by=['event_date'], ascending=True)
+#purchase behavior
+# data['event_type'].value_counts()
+# labels = ['view', 'cart', 'purchase']
+# size = data['event_type'].value_counts()
+# colors = ['lightgreen', 'lightblue', 'coral']
+# explode = [0, 0.1, 0.1]
+# plt.rcParams['figure.figsize'] = (8,8)
+# plt.pie(size, colors= colors, explode=explode, labels=labels, shadow=True, autopct='%.2f%%')
+# plt.title('Event_Type', fontsize = 20)
+# plt.axis('off')
+# plt.legend()
+# plt.show()
 
-x = pd.Series(visitor_by_date.index.values)
-y = visitor_by_date['count']
-plt.rcParams['figure.figsize'] = (20,8)
-plt.plot(x,y)
-plt.show()
+#what items are purchased?
+purchase = data.loc[data['event_type'] == "purchase"]
+purchase = purchase.dropna(axis = 'rows')
+print (purchase)
+#what items are viewed?
+
+#is there a correlation between the ones viewed and purchased?
